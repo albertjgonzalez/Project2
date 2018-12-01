@@ -1,99 +1,317 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
-
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
-
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
-
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
+      //initialize map and center it//
+      var map;
+      var tMarker;
+      var bMarker;
+      var vMarker;
+      var nMarker;
+      var rMarker;
+      var aMarker;
+      var hMarker;
+      
+      
+      
+      
+            
+      function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: {lat: 28.5383, lng: -81.3792}
+              });
+      
+      
+      
+      
+          var geocoder = new google.maps.Geocoder();
+          document.getElementById('submit').addEventListener('click', function() {
+                   geocodeAddress(geocoder, map);
+      
+              });
+      
+      }
+      
+      
+      function geocodeAddress(geocoder, resultsMap) {
+           var address = document.getElementById('address').value;
+              geocoder.geocode({'address': address}, function(results, status) {
+                if (status === 'OK') {
+                  resultsMap.setCenter(results[0].geometry.location);
+                  var marker = new google.maps.Marker({
+                    zoom: 18,
+                    map: resultsMap,
+                    position: results[0].geometry.location
+                  });
+      
+                   $("#address").val("");
+      
+                } else {
+                  alert('Geocode was not successful for the following reason: ' + status);
+      
+      
+                }
+              });
+            }
+      
+      //END initialize map and center it//
+      
+      
+      //Neighborhood coloring//
+      function neighbors(){
+          
+          var kml_url = "https://data.cityoforlando.net/api/geospatial/dpx3-qjrc?method=export&format=KML";    
+          laBoundaries = new google.maps.KmlLayer({url: kml_url,map: map, zoom: 13});
+      }
+      //END Neighborhoods
+      
+      
+      
+      //ajax call for theft//
+      function theft(){
+      $.ajax({
+          url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+          type: "GET",
+          data: {
+            "$limit" : 10000,
+            status: "Mapped",
+            "$q" : "2017",
+            case_offense_category: "Theft",
+            "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+          }
+      }).done(function(data) {
+        console.log("Theft");
+        console.log(data);
+      
+      $.each(data, function(i, entry) {
+            tMarker = new google.maps.Marker({
+            position: new google.maps.LatLng(entry.location.coordinates[1], 
+                                             entry.location.coordinates[0]),
+            map: map,
+            icon: '../markers/yellow_MarkerT.png',
+                        
+          });
         })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
-    });
-
-    $exampleList.empty();
-    $exampleList.append($examples);
-  });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+      })
+      }
+      
+      
+      //Homicide data
+      
+      function homicide(){
+      $.ajax({
+          url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+          type: "GET",
+          data: {
+            "$limit" : 10000,
+            status: "Mapped",
+            "$q" : "2017",
+            case_offense_category: "Homicide",
+            "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+          }
+      
+      }).done(function(data) {
+        
+        console.log("Homicide");
+        console.log(data);
+      
+                $.each(data, function(i, entry) {
+                    var hMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(entry.location.coordinates[1], 
+                                                         entry.location.coordinates[0]),
+                        map: map,
+                        icon: "../markers/red_MarkerH.png",
+                      });
+        })
+      })
+      
+      }
+      
+      //END Homicide
+      
+      
+      
+      
+      
+      //ajax call for Assault data//
+      function assault(){
+      $.ajax({
+          url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+          type: "GET",
+          data: {
+            "$limit" : 10000,
+            status: "Mapped",
+            "$q" : "2017",
+            case_offense_category: "Assault",
+            "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+          }
+      
+      }).done(function(data) {
+        
+        console.log("Assault");
+        console.log(data);
+      
+                $.each(data, function(i, entry) {
+                    var aMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(entry.location.coordinates[1], 
+                                                         entry.location.coordinates[0]),
+                        map: map,
+                        icon: '../markers/green_MarkerA.png',
+                      });
+        })
+      })
+      }
+      
+      //END ajax call for Assault data//
+      
+      
+      //ajax call for burglary data//
+      function burglary(){
+      $.ajax({
+          url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+          type: "GET",
+          data: {
+            "$limit" : 10000,
+            status: "Mapped",
+            "$q" : "2017",
+            case_offense_category: "Burglary",
+            "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+          }
+      
+      }).done(function(data) {
+        
+        console.log("Burglary");
+        console.log(data);
+      
+                $.each(data, function(i, entry) {
+                    var bMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(entry.location.coordinates[1], 
+                                                         entry.location.coordinates[0]),
+                        map: map,
+                        icon: '../markers/purple_MarkerB.png',
+                      });
+        })
+      })
+      }
+      
+      //END ajax call for Burglary data//
+      
+      
+      
+      //ajax call for Narcotics data//
+      function narcotics(){
+      $.ajax({
+          url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+          type: "GET",
+          data: {
+            "$limit" : 10000,
+            status: "Mapped",
+            "$q" : "2017",
+            case_offense_category: "Narcotics",
+            "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+          }
+      
+      }).done(function(data) {
+        
+        console.log("Narcotics");
+        console.log(data);
+      
+                $.each(data, function(i, entry) {
+                    var bMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(entry.location.coordinates[1], 
+                                                         entry.location.coordinates[0]),
+                        map: map,
+                        icon: '../markers/brown_MarkerN.png',
+                    });
+          })
+      })
+      }
+       
+      
+      //END ajax call for Narcotics data//
+      
+      
+      //ajax call for Vehicle Theft data//
+      function vehicle(){
+      $.ajax({
+          url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+          type: "GET",
+          data: {
+            "$limit" : 10000,
+            status: "Mapped",
+            "$q" : "2017",
+            case_offense_category: "Vehicle Theft",
+            "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+          }
+      
+      }).done(function(data) {
+       
+        console.log("Vehicle Theft");
+        console.log(data);
+      
+                $.each(data, function(i, entry) {
+                    var vMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(entry.location.coordinates[1], 
+                                                         entry.location.coordinates[0]),
+                        map: map,
+                        icon: '../markers/orange_MarkerV.png',
+                      });
+        })
+      })
+      }
+      
+      //END ajax call for Vehicle Theft data//
+      
+      //ajax call for Robbery data//
+      function robbery(){
+      $.ajax({
+          url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+          type: "GET",
+          data: {
+            "$limit" : 10000,
+            status: "Mapped",
+            "$q" : "2017",
+            case_offense_category: "Robbery",
+            "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+          }
+      
+      }).done(function(data) {
+        
+        console.log("Robbery");
+        console.log(data);
+      
+                $.each(data, function(i, entry) {
+                    var rMarker = new google.maps.Marker({
+                        position: new google.maps.LatLng(entry.location.coordinates[1], 
+                                                         entry.location.coordinates[0]),
+                        map: map,
+                        icon: '../markers/paleblue_MarkerR.png',
+                      });
+        })
+      })
+      }
+      
+      //END ajax call for Robbery data//
+      
+      
+      
+      
+const divId = 'circles-1';
+const percentage = 60;
+const color = 'blue';
+const myCircle = (divId,percentage,color) =>{
+  Circles.create({
+    id:                  divId,
+    radius:              30,
+    value:               percentage,
+    maxValue:            100,
+    width:               10,
+    text:                function(value){return value + '%';},
+    colors:              ['#4B253A',color],
+    duration:            400,
+    wrpClass:            'circles-wrp',
+    textClass:           'circles-text',
+    valueStrokeClass:    'circles-valueStroke',
+    maxValueStrokeClass: 'circles-maxValueStroke',
+    styleWrapper:        true,
+    styleText:           true
+  })
+} 
+myCircle(divId,percentage,color);
