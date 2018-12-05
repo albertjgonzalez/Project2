@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "exampledb",
+    "password": "root",
+    "database": "florida_crime_db",
     "host": "localhost",
     "dialect": "mysql"
   },
