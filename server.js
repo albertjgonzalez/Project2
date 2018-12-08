@@ -21,7 +21,7 @@ app.get("/stats", function(req, res) {
   db.stats.findAll({where: {
     city: req.query.city
   }}).then(function(stats) {
-    console.log(stats[0].homicide)
+
 
     res.send(stats[0])
 
