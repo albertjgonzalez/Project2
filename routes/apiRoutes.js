@@ -2,9 +2,11 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Get all examples
-  app.get("/search/:term", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  app.get("/stats", function(req, res) {
+    console.log(req.body.city)
+    db.stats.findAll({}).then(function(stats) {
+      console.log(stats)
+      res.json(stats);
     });
   });
 

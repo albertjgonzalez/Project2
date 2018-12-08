@@ -1,5 +1,7 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+DROP DATABASE IF EXISTS florida_crime_db;
+CREATE DATABASE florida_crime_db;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+USE florida_crime_db;
+
+CREATE TABLE stats;
+

@@ -30,7 +30,8 @@
    });
 
    var geocoder = new google.maps.Geocoder();
-   document.getElementById('submit').addEventListener('click', function () {
+   document.getElementById('submit').addEventListener('click', function (event) {
+     event.preventDefault()
      geocodeAddress(geocoder, map);
 
    });
@@ -436,4 +437,44 @@
 
 //END ajax call for Robbery data//
 
+//Crime search for chart
+const orlando = 'orlando'
 
+    $.ajax('/stats', {
+      type: "GET", 
+      data: {city:orlando}
+    }).then(
+      function(stats){
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+        
+            // The data for our dataset
+            data: {
+                labels: [ "Homicide","Assault","Burglary"],
+                datasets: [{
+                  label: "My First dataset",
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                    data: [stats.homicide,stats.assault],
+                }]
+            },
+        
+            // Configuration options go here
+            options: {}
+        });
+      }
+    );
+
+    $.ajax({
+      url: "https://data.cityoforlando.net/resource/6qd7-sr7g.json",
+      type: "GET",
+      data: {
+        "$limit" : 5000,
+        "$$app_token" : "QWmNPsTrdyvnpvmYSgTcxBVT0"
+      }
+  }).done(function(data) {
+    alert("Retrieved " + data.length + " records from the dataset!");
+    console.log(data);
+  });
