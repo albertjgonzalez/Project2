@@ -98,16 +98,9 @@ html, body {
 	padding: 5px;
   }
 
-.footer{
-	height:100px;
-	width: 100%;
-	background-color: whitesmoke;
-
-}
-
-.footer p{
-font-size: 15px;
-text-align: center;
-}
-  
-
+  .dropdown{
+	  margin: auto;
+	  justify-content: center;
+	  align-content: center;
+	  color: black;
+  }
