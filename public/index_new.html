@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="icon" type="image/png" href="assets/cop4.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="styles/stylesheet.css">
+  <style>
+
+    #map {
+        height: 700px;
+      }
+      
+      html, body {
+        height: 100%;
+        margin: 5px;
+        padding: 5px;
+      }
+    </style>
+  <title>Orlando City Watch</title>
+</head>
+
+<body>
+
+  
+
+  <!--Mask-->
+  <div id="intro" class="view hm-black-strong">
+    <div class="container-fluid full-bg-img ">
+
+      <!--Heading-->
+      <h2 class="landTitle display-3 font-bold text-white mb-2">Orlando Safe City</h2>
+
+      <!--Description-->
+      <div id="landWelcome">
+        <h4 class="text-white">Welcome to The City Beautiful</h4>
+        <button type="button" class="startBtn btn btn-outline-danger btn-rounded waves-effect">Let's Start Our
+          Search!<i class="fa fa-map-marker ml-2"></i> </button>
+      </div>
+
+      <div id="landText"></div>
+      <h5 class="landText text-white">Hello there! If your Planing on movig to Orlando,The Magical City our website
+        Orlando Safe city<br>Can help you choose a safer community for your family by searching crimes history
+        locations within just a search<br>of a zipcode number</h5>
+
+    </div>
+  </div>
+  <!--Mask-->
+
+
+
+
+
+
+
+
+  <!--div jumbotron-->
+
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="jumbText di4splay-">Orlando City Watch</h1>
+      <p class="lead"></p>
+    </div>
+  </div>
+
+  <!--div for searchBar-->
+  <div id="searchBar">
+    <form>
+      <h4 class="searchBar">Search </h4>
+      <input id="address" type="textbox" value="">
+      <input id="submit" type="button" value="Geocode">
+
+  </div>
+  <!--div for the map container-->
+  <div id="map"></div>
+
+  <div class="container">
+
+    <div class="form-check form-check-inline">
+      <input class="form-check-input uncheck" type="checkbox" id="homicide">
+      <label class="form-check-label" for="inlineCheckbox1">Homicide</label>
+    </div>
+    <div class="form-check form-check-inline uncheck">
+      <input class="form-check-input" type="checkbox" id="theft">
+      <label class="form-check-label" for="inlineCheckbox2">Theft</label>
+    </div>
+    <div class="form-check form-check-inline uncheck">
+      <input class="form-check-input" type="checkbox" id="robbery">
+      <label class="form-check-label" for="inlineCheckbox3">Robbery</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="vehicle">
+      <label class="form-check-label" for="inlineCheckbox4">Vehicle Theft</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="assault">
+      <label class="form-check-label" for="inlineCheckbox5">Assault</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="narcotics">
+      <label class="form-check-label" for="inlineCheckbox6">Narcotics</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="neighbors">
+      <label class="form-check-label" for="inlineCheckbox7">Neighborhoods</label>
+    </div>
+  </div>
+
+
+
+  <!--div for the cards-->
+
+  <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXBh0Pf9RVhVuXh6YzaTHZJPDx_LSQgB0&callback=initMap"
+    async defer></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+  <script src='js/circles.min.js'></script>
+  <script src='js/index.js'></script>
+</body>
+
+</html>
