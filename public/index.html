@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +11,12 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
- 
+
   <link href="https://fonts.googleapis.com/css?family=Lora:700|Scope+One" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 </head>
+
 <body>
   <div class="wrapper" id="wrapper">
     <header>
@@ -22,144 +24,143 @@
         <div class="parallax text-center" style="background-image: url(images/orlando.jpg);">
           <div class="parallax-pattern-overlay">
             <div class="container text-center" style="height:500px;padding-top:200px;">
-  
+
             </div>
           </div>
         </div>
       </div>
     </header>
-<section class="feature" id="feature">
-        <div class="heading text-center">
-          <br>
-          <h2>Orlando Safe City</h2>
-          <h3>Moving to Orlando? We have the data driven resources to help you make the safest decision for you and your family</h3>
+    <section class="feature" id="feature">
+      <div class="heading text-center">
+        <br>
+        <h2>Orlando Safe City</h2>
+        <h3>Moving to Orlando? We have the data driven resources to help you make the safest decision for you and your
+          family</h3>
+      </div>
+    </section>
+
+    <!-- Beginning of Map -->
+    <div class="container-fluid">
+      <div class="row">
+        <div id="map" class="col-lg-10"> </div>
+        <div id="boxes" class="col-lg-2"></div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="homicide">
+          <label class="form-check-label" for="inlineCheckbox1">Homicide</label>
         </div>
-</section>
- 
-<div class="container-fluid">
-  <div class="row">
-            
-            <div id="map" class="col-lg-10">  </div>
-            <div id="boxes" class="col-lg-2"></div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="homicide">
-                <label class="form-check-label" for="inlineCheckbox1">Homicide</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="theft">
-                <label class="form-check-label" for="inlineCheckbox2">Theft</label>
-              </div>
-              <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="checkbox" id="burglary">
-                  <label class="form-check-label" for="inlineCheckbox3">Burglary</label>
-                </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="robbery">
-                <label class="form-check-label" for="inlineCheckbox3">Robbery</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="vehicle">
-                <label class="form-check-label" for="inlineCheckbox4">Vehicle Theft</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="assault">
-                <label class="form-check-label" for="inlineCheckbox5">Assault</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="narcotics">
-                <label class="form-check-label" for="inlineCheckbox6">Narcotics</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="neighbors">
-                <label class="form-check-label" for="inlineCheckbox7">Neighborhoods</label>
-              </div>
-              <div id="search" class = "form-check form-check-inline" >
-                  <input id="address" type="textbox" size="20" value="">
-                  <input id="button" type="button" value="Geocode">
-                </div>
-            </div>
- 
-            </div>
-       </div>
-      
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="theft">
+          <label class="form-check-label" for="inlineCheckbox2">Theft</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="burglary">
+          <label class="form-check-label" for="inlineCheckbox3">Burglary</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="robbery">
+          <label class="form-check-label" for="inlineCheckbox3">Robbery</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="vehicle">
+          <label class="form-check-label" for="inlineCheckbox4">Vehicle Theft</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="assault">
+          <label class="form-check-label" for="inlineCheckbox5">Assault</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="narcotics">
+          <label class="form-check-label" for="inlineCheckbox6">Narcotics</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="neighbors">
+          <label class="form-check-label" for="inlineCheckbox7">Neighborhoods</label>
+        </div>
+        <div id="search" class="form-check form-check-inline">
+          <input id="address" type="textbox" size="20" value="">
+          <input id="button" type="button" value="Geocode">
+        </div>
+      </div>
+    </div>
+    <!-- End of Map -->
+
+  </div>
+
   <br>
   <hr>
-<br>
-
-
+  <br>
 
   <div class="dropdown">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown button
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item btn-block" href="#">Cape Coral</a>
-          <a class="dropdown-item btn-block" href="#">Clearwater</a>
-          <a class="dropdown-item btn-block" href="#">Coral Springs</a>
-          <a class="dropdown-item btn-block" href="#">Davie</a>
-          <a class="dropdown-item btn-block" href="#">Fort Lauderdale</a>
-          <a class="dropdown-item btn-block" href="#">Gainesville</a>
-          <a class="dropdown-item btn-block" href="#">Hialeah</a>
-          <a class="dropdown-item btn-block" href="#">Hollywood</a>
-          <a class="dropdown-item btn-block" href="#">Jacksonville</a>
-          <a class="dropdown-item btn-block" href="#">Lakeland</a>
-          <a class="dropdown-item btn-block" href="#">Miami</a>
-          <a class="dropdown-item btn-block" href="#">Miami Gardens</a>
-          <a class="dropdown-item btn-block" href="#">Miramar</a>
-          <a class="dropdown-item btn-block" href="#">Orlando</a>
-          <a class="dropdown-item btn-block" href="#">Palm Bay</a>
-          <a class="dropdown-item btn-block" href="#">Pembroke Pines</a>
-          <a class="dropdown-item btn-block" href="#">Pompano Beach</a>
-          <a class="dropdown-item btn-block" href="#">Port St. Lucie</a>
-          <a class="dropdown-item btn-block" href="#">Tallahassee</a>
-          <a class="dropdown-item btn-block" href="#">St. Petersburg</a>
-          <a class="dropdown-item btn-block" href="#">Tampa</a>
-          <a class="dropdown-item btn-block" href="#">West Palm Beach</a>
-      </div>
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">Choose a city to compare your search results to</button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item btn-block" href="#">Cape Coral</a>
+      <a class="dropdown-item btn-block" href="#">Clearwater</a>
+      <a class="dropdown-item btn-block" href="#">Coral Springs</a>
+      <a class="dropdown-item btn-block" href="#">Davie</a>
+      <a class="dropdown-item btn-block" href="#">Fort Lauderdale</a>
+      <a class="dropdown-item btn-block" href="#">Gainesville</a>
+      <a class="dropdown-item btn-block" href="#">Hialeah</a>
+      <a class="dropdown-item btn-block" href="#">Hollywood</a>
+      <a class="dropdown-item btn-block" href="#">Jacksonville</a>
+      <a class="dropdown-item btn-block" href="#">Lakeland</a>
+      <a class="dropdown-item btn-block" href="#">Miami</a>
+      <a class="dropdown-item btn-block" href="#">Miami Gardens</a>
+      <a class="dropdown-item btn-block" href="#">Miramar</a>
+      <a class="dropdown-item btn-block" href="#">Orlando</a>
+      <a class="dropdown-item btn-block" href="#">Palm Bay</a>
+      <a class="dropdown-item btn-block" href="#">Pembroke Pines</a>
+      <a class="dropdown-item btn-block" href="#">Pompano Beach</a>
+      <a class="dropdown-item btn-block" href="#">Port St. Lucie</a>
+      <a class="dropdown-item btn-block" href="#">Tallahassee</a>
+      <a class="dropdown-item btn-block" href="#">St. Petersburg</a>
+      <a class="dropdown-item btn-block" href="#">Tampa</a>
+      <a class="dropdown-item btn-block" href="#">West Palm Beach</a>
     </div>
-  
+  </div>
+
   </div>
   <div class="heading text-center">
-      <h3>How does the 2017 crime data from Orlando stack up against other cities in Florida?</h3>
-    </div>
-    <!--chart js -->
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-5 top">
-            Orlando crimes
-            <canvas id="orlandoChart1"></canvas>
-          </div>
-          <div class="col-md-5 top right">
-              Orlando theft / population
-              <canvas id="orlandoChart2"></canvas>
-          </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5 bottom">
-            Other City crimes
-            <canvas id="selectedChart1"></canvas>
-          </div>
-          <div class="col-md-5 bottom right">
-            Other city theft /population
-            <canvas id="selectedChart2"></canvas>
-          </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5 middle">
-            Thefts by population
-            <canvas id="compareChart"></canvas>
-          </div>
-        </div>
+    <h3>How does the 2017 crime data from Orlando stack up against other cities in Florida?</h3>
+  </div>
+  <!--chart js -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-5 top">
+        Orlando crimes
+        <canvas id="orlandoChart1"></canvas>
       </div>
-<br>
-<br>
-<br>
-    <!--footer-->
-    <section class="footer" id="footer">
-        <br>
-            <p>GROUP 1 - Albert Gonzalez, Kenny Mendez, Ed Bock, Preston Mack </p>
- 
-    </section>
+      <div class="col-md-5 top right">
+        Orlando theft / population
+        <canvas id="orlandoChart2"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 bottom">
+        Other City crimes
+        <canvas id="selectedChart1"></canvas>
+      </div>
+      <div class="col-md-5 bottom right">
+        Other city theft /population
+        <canvas id="selectedChart2"></canvas>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 middle">
+        Thefts by population
+        <canvas id="compareChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <!--footer-->
+  <section class="footer" id="footer">
+    <br>
+    <p>GROUP 1 - Albert Gonzalez, Kenny Mendez, Ed Bock, Preston Mack </p>
+
+  </section>
   </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/app.js"></script>
@@ -167,6 +168,7 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/parallax.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_DEpDpIsPJFO4wxpCxjr6cJu20USSmAw&libraries=places&callback=initMap"
-  async defer></script>
+    async defer></script>
 </body>
+
 </html>

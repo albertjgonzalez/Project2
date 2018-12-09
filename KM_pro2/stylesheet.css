@@ -1,0 +1,145 @@
+/*pro 2 stylesheet*/
+html,
+body,
+header,
+#main,
+#intro{
+    height: 100%;
+}
+
+body{
+    background-color:black;
+}
+
+#intro{
+    background-image:url(./assets/orlando_eola.jpg);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.landTextBg{
+    height: 550px;
+    width: 500;
+    margin-right: auto;
+    margin-left: auto;
+    padding-top: 30px;
+    background-color:rgba(0,0,0,0.5)
+}
+
+.landTitle{
+    text-align:center;
+    padding-top: 15%;
+    margin-bottom: 0%;
+}
+
+#landWelcome{
+    text-align: center;
+    color:white;
+    padding-top:5px;
+}
+    
+.landText{
+     text-align: center;
+     color:white;
+    /* background-color:rgba(0,0,0,0.3);*/
+     padding-top:5px;
+}
+
+.navbar {
+    height: 200px;
+}
+
+.my-navbar {
+    background-image: url(assets/navbar4.jpg);
+    background-color: black;
+    color: blue;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#my-nav-name {
+    padding: 5px 10px 7px 10px;
+}
+
+.navbarRight {
+  /* color: #ccc;
+  font-weight: normal;
+  text-decoration: none;
+    background-image: url(assets/navbar.jpg);
+    background-color: black;
+  color: blue;
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+
+}
+
+/* #navbarNav a:hover,
+#navbarNav a:active {
+  color: white;
+  text-decoration: none;
+} */
+
+/*#allText{
+    margin-right:auto;
+    margin-left:auto;
+    /*background-color:rgba(0,0,0,0.5)
+}*/
+
+
+
+
+
+.mainTitle{
+    background-color:black;
+    border-color:lightcoral;
+    border-style: solid;
+    text-align: center;
+    height: 100px;
+    width:auto;
+    margin-top: 5px;
+    padding-top: 15px;  
+}
+
+#searchBar{
+    color:white;
+    margin-left: 70%;
+    padding-bottom: 10px;
+}
+
+::placeholder{
+    color:gray;
+}
+
+#search-btn{
+    border-radius: 10px;
+    border-style: solid;
+    border-color:lightcoral;
+}
+
+.btn-dark{
+    border-style: solid;
+    border-color:lightcoral;
+}
+
+.map-container{
+    background-size: cover;
+   /* background-image: url(assets/ic2.jpg);*/
+    height: 250px;
+    width: 700px;
+    border-style: solid;
+    border-color:lightcoral;
+}
+
+.btnList{
+    height: 200px;
+    width: auto;
+    text-align: center;
+    padding-top:10px;
+}
+
+.crimeBtn{
+    padding:5, 5, 5, 5px;
+}
