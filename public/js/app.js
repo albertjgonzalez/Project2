@@ -441,16 +441,20 @@
 let selectedCity = 'jacksonville'
 let orlandoStat;
 let selectedStat;
+let selectedCityChart2;
+let selectedCityChart1;
+let perPopulationChart;
+let updatedStats;
 
-const createCompareChart = () =>{
+const createCompareChart = (txt) =>{
   var compare = document.getElementById('compareChart').getContext('2d');
-  var perPopulationChart = new Chart(compare, {
+  perPopulationChart = new Chart(compare, {
     // The type of chart we want to create
     type: 'bar',
     responsive: true,
     // The data for our dataset
     data: {
-        labels: ["Orlando","Selected City"],
+        labels: ["Orlando",txt],
         datasets: [{
           data: [orlandoStat,selectedStat],
           backgroundColor: [
@@ -470,6 +474,9 @@ const createCompareChart = () =>{
       }]
   },
   options: {
+    legend: {
+      display: false
+   },
     responsive: true,
     maintainAspectRatio: false,
   }
@@ -506,7 +513,7 @@ const createOlandoCharts = () =>{
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(157, 99, 200, 0.2)',
                 ],
                 borderColor: [
                   'rgba(176, 34, 132, 0.2)',
@@ -517,7 +524,7 @@ const createOlandoCharts = () =>{
                   'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
                   'rgba(75, 192, 192, 0.2)',
-                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(157, 99, 200, 0.2)',
               ],
                 backgroundColor: [
                   'rgba(176, 34, 132, 0.2)',
@@ -528,7 +535,7 @@ const createOlandoCharts = () =>{
                   'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
                   'rgba(75, 192, 192, 0.2)',
-                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(157, 99, 200, 0.2)',
               ]
             }]
         },
@@ -573,24 +580,139 @@ const createOlandoCharts = () =>{
         maintainAspectRatio: false,
       }
       });
-      createSelectedCharts()
+      createSelectedCharts('cape coral')
     }
   );
 };
 
-const createSelectedCharts = () =>{
+const createSelectedCharts = (txt) =>{
   $.ajax('/stats', {
     type: "GET", 
     data: {
-      city:selectedCity,
+      city:txt,
       // city2:selectedCity
     }
   }).then(
     function(stats){
+      updatedStats = stats
       selectedStat = stats.population.replace(/,/g, "")/stats.theft.replace(/,/g, "")
       var selectedChart1 = document.getElementById('selectedChart1').getContext('2d');
       var selectedChart2 = document.getElementById('selectedChart2').getContext('2d');
-      var selectedCityChart1 = new Chart(selectedChart1, {
+      selectedCityChart1 = new Chart(selectedChart1, {
+          // The type of chart we want to create
+          type: 'pie',
+      
+          // The data for our dataset
+          data: {
+              labels: ["Homicide","Robbery","Vehicle Theft","Assault","Rape","Arson"],
+              datasets: [{
+                data: [stats.homicide.replace(/,/g, ""), stats.robbery.replace(/,/g, ""), stats.vehicleTheft.replace(/,/g, ""),stats.assault.replace(/,/g, ""), stats.rape.replace(/,/g, ""),stats.arson.replace(/,/g, "")],
+                backgroundColor: [
+                    'rgba(176, 34, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(157, 99, 200, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(176, 34, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(157, 99, 200, 0.2)',
+              ],
+                backgroundColor: [
+                  'rgba(176, 34, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(157, 99, 200, 0.2)',
+              ]
+            }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        }
+      });
+      selectedCityChart2 = new Chart(selectedChart2, {
+        // The type of chart we want to create
+        type: 'pie',
+    
+        // The data for our dataset
+        data: {
+            labels: ["Theft","Violent Crime","Property Crime", "Burglary"],
+            datasets: [{
+              data: [stats.theft.replace(/,/g, ""),stats.violentCrime.replace(/,/g, ""),stats.propertyCrime.replace(/,/g, ""),stats.burglary.replace(/,/g, "")],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+            ],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+            ]
+          }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+      }
+      });
+      createCompareChart(txt)
+    }
+    
+  )
+};
+
+const updateData = function(stats) {
+  selectedCityChart2.data(stats.theft.replace(/,/g, ""),stats.violentCrime.replace(/,/g, ""),stats.propertyCrime.replace(/,/g, ""),stats.burglary.replace(/,/g, ""))
+  selectedCityChart1.data(stats.homicide.replace(/,/g, ""), stats.robbery.replace(/,/g, ""), stats.vehicleTheft.replace(/,/g, ""),stats.assault.replace(/,/g, ""), stats.rape.replace(/,/g, ""),stats.arson.replace(/,/g, ""))
+  selectedCityChart1.update();
+  selectedCityChart2.update();
+}
+
+createOlandoCharts();
+
+$('.dropdown-item').on('click',(e) =>{
+  e.preventDefault()
+  var txt = $(e.target).text();
+  selectedCityChart1.destroy()
+  selectedCityChart2.destroy()
+  perPopulationChart.destroy()
+  $.ajax('/stats', {
+    type: "GET", 
+    data: {
+      city:txt,
+      // city2:selectedCity
+    }
+  }).then(
+    function(stats){
+      var selectedChart1 = document.getElementById('selectedChart1').getContext('2d');
+      var selectedChart2 = document.getElementById('selectedChart2').getContext('2d');
+      selectedCityChart1 = new Chart(selectedChart1, {
           // The type of chart we want to create
           type: 'pie',
       
@@ -639,7 +761,7 @@ const createSelectedCharts = () =>{
           maintainAspectRatio: false,
         }
       });
-      var selectedCityChart2 = new Chart(selectedChart2, {
+      selectedCityChart2 = new Chart(selectedChart2, {
         // The type of chart we want to create
         type: 'pie',
     
@@ -673,15 +795,8 @@ const createSelectedCharts = () =>{
         maintainAspectRatio: false,
       }
       });
-      createCompareChart()
+      createCompareChart(txt)
     }
     
-  );
-};
-
-
-createOlandoCharts();
-
-
-
-   
+  )
+})   

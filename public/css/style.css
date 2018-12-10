@@ -98,9 +98,24 @@ html, body {
 	padding: 5px;
   }
 
-  .dropdown{
-	  margin: auto;
-	  justify-content: center;
-	  align-content: center;
-	  color: black;
-  }
+.dropdown{
+	width: 100%;
+	margin: auto;
+	text-align: center;
+	font-size: 30px;
+}
+
+.dropdown-item{
+	margin: auto;
+	font-size: 30px;
+	color: black;
+}
+.dropdown-item:hover{
+	margin: auto;
+	font-size: 30px;
+	color: rgb(104, 100, 100);
+	background: rgb(233, 230, 230);
+}
+.dropdown-menu{
+	left: 45%;
+}
