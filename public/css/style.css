@@ -119,3 +119,7 @@ html, body {
 .dropdown-menu{
 	left: 45%;
 }
+
+.dropdown-toggle{
+	font-size: 30px;
+}
